@@ -1,0 +1,9 @@
+{
+	"name": "ilearndatafactory",
+	"location": "eastasia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "28ebfb7c-cd72-40ca-ad75-1e06987332d2",
+		"tenantId": "2ef96e70-a7ad-4559-a029-af7fa1d99dcd"
+	}
+}
