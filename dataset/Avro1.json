@@ -1,0 +1,50 @@
+{
+	"name": "Avro1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Avro",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "07.avro",
+				"folderPath": "ilearniothub2021/01/2021/09/25/16",
+				"fileSystem": "ilearndlsgen2fs"
+			}
+		},
+		"schema": {
+			"type": "record",
+			"name": "Microsoft.Azure.Devices.Message",
+			"fields": [
+				{
+					"name": "EnqueuedTimeUtc",
+					"type": "string"
+				},
+				{
+					"name": "Properties",
+					"type": {
+						"type": "map",
+						"values": "string"
+					}
+				},
+				{
+					"name": "SystemProperties",
+					"type": {
+						"type": "map",
+						"values": "string"
+					}
+				},
+				{
+					"name": "Body",
+					"type": [
+						"null",
+						"bytes"
+					]
+				}
+			]
+		}
+	}
+}
