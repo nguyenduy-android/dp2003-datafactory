@@ -19,7 +19,8 @@
 						"linkedService": {
 							"referenceName": "AzureDataLakeStorage1",
 							"type": "LinkedServiceReference"
-						}
+						},
+						"folderPath": "ilearndlsgen2fs/ilearniothub2021/01/2021/09/25/16"
 					},
 					"compute": {
 						"coreCount": 8,
