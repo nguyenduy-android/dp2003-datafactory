@@ -19,7 +19,7 @@
 						"type": "JsonSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
+							"fileListPath": "photos/1.png",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
