@@ -1,5 +1,5 @@
 {
-	"name": "InputDataSet",
+	"name": "OutputDataSet",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage2",
@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "InputDataset.json",
+				"fileName": "OutputDataset.json",
 				"fileSystem": "datasets"
 			}
 		},
@@ -47,9 +47,6 @@
 									"type": "object",
 									"properties": {
 										"type": {
-											"type": "string"
-										},
-										"fileName": {
 											"type": "string"
 										},
 										"folderPath": {
