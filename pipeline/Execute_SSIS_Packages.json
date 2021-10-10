@@ -1,10 +1,10 @@
 {
-	"name": "pipeline2",
+	"name": "Execute_SSIS_Packages",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
-				"type": "Copy",
+				"name": "Execute SSIS package1",
+				"type": "ExecuteSSISPackage",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -15,7 +15,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"enableStaging": false
+					"packageLocation": {
+						"type": "SSISDB"
+					},
+					"loggingLevel": "Basic"
 				}
 			}
 		],
