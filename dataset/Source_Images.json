@@ -1,5 +1,5 @@
 {
-	"name": "InputDataSet",
+	"name": "Source_Images",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage2",

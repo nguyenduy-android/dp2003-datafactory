@@ -39,13 +39,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "InputDataSet",
+						"referenceName": "Source_Images",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "OutputDataSet",
+						"referenceName": "Target_Images",
 						"type": "DatasetReference"
 					}
 				]

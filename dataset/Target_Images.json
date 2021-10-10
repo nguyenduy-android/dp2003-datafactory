@@ -1,5 +1,5 @@
 {
-	"name": "OutputDataSet",
+	"name": "Target_Images",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage2",
