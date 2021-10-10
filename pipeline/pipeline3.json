@@ -71,6 +71,7 @@
 						"value": "@activity('Filter1').output.Value",
 						"type": "Expression"
 					},
+					"isSequential": false,
 					"activities": [
 						{
 							"name": "Copy data2",
@@ -89,7 +90,8 @@
 									"type": "BinarySource",
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
-										"fileListPath": "photos",
+										"recursive": true,
+										"wildcardFileName": "*.png",
 										"deleteFilesAfterCompletion": false
 									},
 									"formatSettings": {
