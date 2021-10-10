@@ -98,7 +98,11 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity(\"Get Metadata1\").output.childitems",
+						"value": "@activity('Get Metadata1').output.childitems",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@startswith(item.name(),'2.png')",
 						"type": "Expression"
 					}
 				}
