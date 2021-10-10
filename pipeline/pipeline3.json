@@ -15,13 +15,19 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"fieldList": [],
+					"dataset": {
+						"referenceName": "Source_Images",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"childItems"
+					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
-						"type": "JsonReadSettings"
+						"type": "BinaryReadSettings"
 					}
 				}
 			},
