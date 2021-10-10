@@ -67,6 +67,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@activity('Filter1')",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Copy data2",
