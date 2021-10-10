@@ -1,9 +1,9 @@
 {
-	"name": "Execute_SSIS_Packages",
+	"name": "LiftAndShiftSSISPackages",
 	"properties": {
 		"activities": [
 			{
-				"name": "Execute SSIS package1",
+				"name": "LiftAndShiftSSISPackages",
 				"type": "ExecuteSSISPackage",
 				"dependsOn": [],
 				"policy": {
