@@ -10,8 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "OutputDataset.json",
-				"fileSystem": "datasets"
+				"fileSystem": "target"
 			}
 		},
 		"schema": {
