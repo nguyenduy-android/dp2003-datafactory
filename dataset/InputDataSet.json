@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "InputDataset.json",
-				"fileSystem": "datasets"
+				"fileName": "1.png",
+				"fileSystem": "photos"
 			}
 		},
 		"schema": {
