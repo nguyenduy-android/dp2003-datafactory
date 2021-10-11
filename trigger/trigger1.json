@@ -15,10 +15,10 @@
 		"typeProperties": {
 			"recurrence": {
 				"frequency": "Minute",
-				"interval": 20,
-				"startTime": "2021-10-11T22:05:00Z",
-				"endTime": "2021-10-11T23:07:00Z",
-				"timeZone": "UTC"
+				"interval": 10,
+				"startTime": "2021-10-11T23:05:00",
+				"endTime": "2021-10-11T23:59:00",
+				"timeZone": "SE Asia Standard Time"
 			}
 		}
 	}
