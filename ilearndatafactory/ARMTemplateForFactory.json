@@ -593,7 +593,7 @@
 				],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "DimProduct"
+					"table": "Person"
 				}
 			},
 			"dependsOn": [
