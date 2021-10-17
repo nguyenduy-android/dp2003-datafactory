@@ -1,0 +1,20 @@
+{
+	"name": "azuredlgen2parquets",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "dimcustomer",
+				"fileSystem": "databrickparquets"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
