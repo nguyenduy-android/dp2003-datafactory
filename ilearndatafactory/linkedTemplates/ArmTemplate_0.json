@@ -461,7 +461,7 @@
 				],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "Person"
+					"table": "FactResellerSales"
 				}
 			},
 			"dependsOn": [
