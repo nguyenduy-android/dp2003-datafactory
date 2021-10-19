@@ -134,7 +134,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "DimEmployee"
+			"table": "DimGeography"
 		}
 	}
 }
