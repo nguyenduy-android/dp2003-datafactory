@@ -6,7 +6,7 @@
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "ExecuteFrmSqlDb2SqlPool_SSIS",
+					"referenceName": "pl_execute_frmsqldb2sqlpool_using_ssis",
 					"type": "PipelineReference"
 				}
 			}
