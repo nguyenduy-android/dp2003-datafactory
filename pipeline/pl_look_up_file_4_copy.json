@@ -64,6 +64,19 @@
 									"type": "Expression"
 								}
 							}
+						},
+						{
+							"name": "Set variable2",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "sinkFileName",
+								"value": {
+									"value": "@item().sinkFileName",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
@@ -71,6 +84,9 @@
 		],
 		"variables": {
 			"sourceRelativeURL": {
+				"type": "String"
+			},
+			"sinkFileName": {
 				"type": "String"
 			}
 		},
