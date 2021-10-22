@@ -1,5 +1,5 @@
 {
-	"name": "ds_cases_deaths_raw_dl",
+	"name": "ds_ecdc_raw_dl",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage2",
