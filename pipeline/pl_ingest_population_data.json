@@ -101,7 +101,8 @@
 					},
 					"fieldList": [
 						"columnCount",
-						"size"
+						"size",
+						"exists"
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
