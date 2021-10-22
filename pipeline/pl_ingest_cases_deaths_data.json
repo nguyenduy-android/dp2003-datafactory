@@ -64,7 +64,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"fileName": {
-								"value": "@variables('sinkPath')",
+								"value": "@variables('sinkFileName')",
 								"type": "Expression"
 							}
 						}
