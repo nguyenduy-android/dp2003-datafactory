@@ -87,7 +87,8 @@
 							"userProperties": [],
 							"typeProperties": {
 								"url": "https://fileincompatible.com",
-								"method": "POST"
+								"method": "POST",
+								"body": "ok"
 							}
 						}
 					],
