@@ -1,5 +1,5 @@
 {
-	"name": "CopySqlTable2Datalake",
+	"name": "pl_copy_sqltable_2_parquetfile",
 	"properties": {
 		"activities": [
 			{
@@ -34,13 +34,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "AzureSqlTable1",
+						"referenceName": "ds_sqldbtable",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "azuredlgen2parquets",
+						"referenceName": "ds_azuredlgen2parquets_folder",
 						"type": "DatasetReference"
 					}
 				]
