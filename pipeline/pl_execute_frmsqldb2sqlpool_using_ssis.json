@@ -1,5 +1,5 @@
 {
-	"name": "ExecuteFrmSqlDb2SqlPool_SSIS",
+	"name": "pl_execute_frmsqldb2sqlpool_using_ssis",
 	"properties": {
 		"activities": [
 			{
