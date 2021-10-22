@@ -13,7 +13,16 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "sourceRelativeURL",
+						"value": "cloudboxacademy/covid19/main/raw/main/ecdc_data/hospital_admissions.csv"
+					},
+					{
+						"name": "sinkPath",
+						"value": "hospital_admissions.csv"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
