@@ -1,5 +1,5 @@
 {
-	"name": "azuredlgen2parquets",
+	"name": "ds_azuredlgen2parquets_folder",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage2",
