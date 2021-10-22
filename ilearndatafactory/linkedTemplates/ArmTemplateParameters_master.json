@@ -32,6 +32,9 @@
 		"AzureDataLakeStorage2_properties_typeProperties_url": {
 			"value": "https://ilearndlstorgen2.dfs.core.windows.net"
 		},
+		"ls_http_opendata_ecdc_europa_eu_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com"
+		},
 		"ilearnAzureSSIS_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
 			"value": "ilearnsqlserver.database.windows.net"
 		},
