@@ -1,5 +1,5 @@
 {
-	"name": "Source_Images",
+	"name": "ds_sourceimagefolder",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage2",
