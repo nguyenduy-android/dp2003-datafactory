@@ -72,6 +72,25 @@
 						"value": "@equals(activity('Get Metadata1').output.columnCount,13)",
 						"type": "Expression"
 					},
+					"ifFalseActivities": [
+						{
+							"name": "SendEmail",
+							"type": "WebActivity",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"url": "https://fileincompatible.com",
+								"method": "POST"
+							}
+						}
+					],
 					"ifTrueActivities": [
 						{
 							"name": "Copy data1_copy1",
