@@ -15,7 +15,7 @@
 			},
 			"columnDelimiter": "\t",
 			"compressionCodec": "gzip",
-			"compressionLevel": "Optimal",
+			"compressionLevel": "Fastest",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
