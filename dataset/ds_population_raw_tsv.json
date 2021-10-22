@@ -13,7 +13,7 @@
 				"fileName": "population_by_age.tsv",
 				"fileSystem": "datasets"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "\t",
 			"escapeChar": "\\",
 			"quoteChar": "\""
 		},
