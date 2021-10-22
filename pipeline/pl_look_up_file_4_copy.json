@@ -64,16 +64,6 @@
 									"type": "Expression"
 								}
 							}
-						},
-						{
-							"name": "sinkFileName",
-							"type": "SetVariable",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "sourceRelativeURL",
-								"value": ""
-							}
 						}
 					]
 				}
