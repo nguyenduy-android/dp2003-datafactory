@@ -13,99 +13,27 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_ecdc_file_list')]",
+			"name": "[concat(parameters('factoryName'), '/ds_targetimagefolder')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "ls_ilearndlstorgen2",
+					"referenceName": "AzureDataLakeStorage2",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "Json",
+				"type": "Binary",
 				"typeProperties": {
 					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "ecdc_file_list_for_2_files.json",
-						"container": "datasets"
-					}
-				},
-				"schema": {
-					"type": "object",
-					"properties": {
-						"sourceRelativeURL": {
-							"type": "string"
-						},
-						"sinkFileName": {
-							"type": "string"
-						}
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "target"
 					}
 				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/CopySqlTable2Datalake')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "AzureSqlSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings",
-									"blockSizeInMB": 4
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "AzureSqlTable1",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "azuredlgen2parquets",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Copy_Images')]",
+			"name": "[concat(parameters('factoryName'), '/pl_copy_images')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -124,7 +52,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"dataset": {
-								"referenceName": "Source_Images",
+								"referenceName": "ds_sourceimagefolder",
 								"type": "DatasetReference",
 								"parameters": {}
 							},
@@ -218,14 +146,14 @@
 									},
 									"inputs": [
 										{
-											"referenceName": "Source_Images",
+											"referenceName": "ds_sourceimagefolder",
 											"type": "DatasetReference",
 											"parameters": {}
 										}
 									],
 									"outputs": [
 										{
-											"referenceName": "Target_Images",
+											"referenceName": "ds_targetimagefolder",
 											"type": "DatasetReference",
 											"parameters": {}
 										}
@@ -238,6 +166,172 @@
 				"policy": {
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_targetimagefolder')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_copy_sqltable_2_parquetfile')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings",
+									"blockSizeInMB": 4
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "ds_sqldbtable",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "ds_azuredlgen2parquets_folder",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_ingest_ecdc_data')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "HttpReadSettings",
+									"requestMethod": "GET"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ds_ecdc_raw_csv",
+								"type": "DatasetReference",
+								"parameters": {
+									"relativeURL": {
+										"value": "@pipeline().parameters.sourceRelativeURL",
+										"type": "Expression"
+									}
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "ds_ecdc_raw_dl",
+								"type": "DatasetReference",
+								"parameters": {
+									"fileName": {
+										"value": "@pipeline().parameters.sinkFileName",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"parameters": {
+					"sourceRelativeURL": {
+						"type": "string",
+						"defaultValue": "cloudboxacademy/covid19/main/raw/main/ecdc_data/hospital_admissions.csv"
+					},
+					"sinkFileName": {
+						"type": "string",
+						"defaultValue": "hospital_admissions.csv"
+					}
+				},
+				"variables": {
+					"sourceRelativeURL": {
+						"type": "String",
+						"defaultValue": "cloudboxacademy/covid19/main/raw/main/ecdc_data/hospital_admissions.csv"
+					},
+					"sinkFileName": {
+						"type": "String",
+						"defaultValue": "hospital_admissions.csv"
+					}
 				},
 				"annotations": []
 			},
@@ -457,187 +551,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/trigger1')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "ExecuteFrmSqlDb2SqlPool_SSIS",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Minute",
-						"interval": 5,
-						"startTime": "2021-10-11T23:05:00",
-						"endTime": "2021-10-11T23:59:00",
-						"timeZone": "SE Asia Standard Time"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/df_iot')]",
-			"type": "Microsoft.DataFactory/factories/dataflows",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "MappingDataFlow",
-				"typeProperties": {
-					"sources": [
-						{
-							"dataset": {
-								"referenceName": "Avro1",
-								"type": "DatasetReference"
-							},
-							"name": "source1"
-						}
-					],
-					"sinks": [
-						{
-							"linkedService": {
-								"referenceName": "AzureSqlDatabase1",
-								"type": "LinkedServiceReference"
-							},
-							"name": "sink1"
-						},
-						{
-							"linkedService": {
-								"referenceName": "AzureSqlDatabase1",
-								"type": "LinkedServiceReference"
-							},
-							"name": "sink2"
-						}
-					],
-					"transformations": [
-						{
-							"name": "JsonValue"
-						},
-						{
-							"name": "ParseJSON"
-						},
-						{
-							"name": "GetJsonFields"
-						}
-					],
-					"script": "source(output(\n\t\tEnqueuedTimeUtc as string,\n\t\tProperties as [string,string],\n\t\tSystemProperties as [string,string],\n\t\tBody as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 select(mapColumn(\n\t\tPiData = Body\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> JsonValue\nJsonValue parse(PiData = PiData ? (deviceId as string,\n\t\ttemperature as long,\n\t\thumidity as long),\n\tformat: 'json',\n\tdocumentForm: 'singleDocument') ~> ParseJSON\nParseJSON select(mapColumn(\n\t\tdeviceId = PiData.deviceId,\n\t\ttemperature = PiData.temperature,\n\t\thumidity = PiData.humidity\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> GetJsonFields\nJsonValue sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tstore: 'sqlserver',\n\tschemaName: 'dbo',\n\ttableName: 'IOTData',\n\tinsertable: true,\n\tupdateable: false,\n\tdeletable: false,\n\tupsertable: false,\n\ttruncate: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\tsaveOrder: 1,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink1\nGetJsonFields sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tstore: 'sqlserver',\n\tschemaName: 'dbo',\n\ttableName: 'IoTDataDetail',\n\tinsertable: true,\n\tupdateable: false,\n\tdeletable: false,\n\tupsertable: false,\n\trecreate: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink2"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_ingest_ecdc_data')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "HttpReadSettings",
-									"requestMethod": "GET"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ds_ecdc_raw_csv",
-								"type": "DatasetReference",
-								"parameters": {
-									"relativeURL": {
-										"value": "@pipeline().parameters.sourceRelativeURL",
-										"type": "Expression"
-									}
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "ds_ecdc_raw_dl",
-								"type": "DatasetReference",
-								"parameters": {
-									"fileName": {
-										"value": "@pipeline().parameters.sinkFileName",
-										"type": "Expression"
-									}
-								}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"sourceRelativeURL": {
-						"type": "string",
-						"defaultValue": "cloudboxacademy/covid19/main/raw/main/ecdc_data/hospital_admissions.csv"
-					},
-					"sinkFileName": {
-						"type": "string",
-						"defaultValue": "hospital_admissions.csv"
-					}
-				},
-				"variables": {
-					"sourceRelativeURL": {
-						"type": "String",
-						"defaultValue": "cloudboxacademy/covid19/main/raw/main/ecdc_data/hospital_admissions.csv"
-					},
-					"sinkFileName": {
-						"type": "String",
-						"defaultValue": "hospital_admissions.csv"
-					}
-				},
-				"annotations": []
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/pl_look_up_file_4_copy')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -738,9 +651,84 @@
 				},
 				"annotations": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/ds_ecdc_file_list')]"
-			]
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/trigger1')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pl_execute_frmsqldb2sqlpool_using_ssis",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 5,
+						"startTime": "2021-10-11T23:05:00",
+						"endTime": "2021-10-11T23:59:00",
+						"timeZone": "SE Asia Standard Time"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/df_iot')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "Avro1",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						}
+					],
+					"sinks": [
+						{
+							"linkedService": {
+								"referenceName": "AzureSqlDatabase1",
+								"type": "LinkedServiceReference"
+							},
+							"name": "sink1"
+						},
+						{
+							"linkedService": {
+								"referenceName": "AzureSqlDatabase1",
+								"type": "LinkedServiceReference"
+							},
+							"name": "sink2"
+						}
+					],
+					"transformations": [
+						{
+							"name": "JsonValue"
+						},
+						{
+							"name": "ParseJSON"
+						},
+						{
+							"name": "GetJsonFields"
+						}
+					],
+					"script": "source(output(\n\t\tEnqueuedTimeUtc as string,\n\t\tProperties as [string,string],\n\t\tSystemProperties as [string,string],\n\t\tBody as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 select(mapColumn(\n\t\tPiData = Body\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> JsonValue\nJsonValue parse(PiData = PiData ? (deviceId as string,\n\t\ttemperature as long,\n\t\thumidity as long),\n\tformat: 'json',\n\tdocumentForm: 'singleDocument') ~> ParseJSON\nParseJSON select(mapColumn(\n\t\tdeviceId = PiData.deviceId,\n\t\ttemperature = PiData.temperature,\n\t\thumidity = PiData.humidity\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> GetJsonFields\nJsonValue sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tstore: 'sqlserver',\n\tschemaName: 'dbo',\n\ttableName: 'IOTData',\n\tinsertable: true,\n\tupdateable: false,\n\tdeletable: false,\n\tupsertable: false,\n\ttruncate: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\tsaveOrder: 1,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink1\nGetJsonFields sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tstore: 'sqlserver',\n\tschemaName: 'dbo',\n\ttableName: 'IoTDataDetail',\n\tinsertable: true,\n\tupdateable: false,\n\tdeletable: false,\n\tupsertable: false,\n\trecreate: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink2"
+				}
+			},
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/writedata_fr_stor_sqldb')]",
