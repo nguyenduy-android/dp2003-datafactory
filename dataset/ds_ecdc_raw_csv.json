@@ -13,12 +13,10 @@
 		},
 		"parameters": {
 			"relativeURL": {
-				"type": "string",
-				"defaultValue": "cloudboxacademy/covid19/main/ecdc_data/cases_deaths.csv"
+				"type": "string"
 			},
 			"baseURL": {
-				"type": "string",
-				"defaultValue": "https://raw.githubusercontent.com"
+				"type": "string"
 			}
 		},
 		"annotations": [],
