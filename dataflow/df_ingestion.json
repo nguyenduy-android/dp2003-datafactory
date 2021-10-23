@@ -1,5 +1,5 @@
 {
-	"name": "df_ingest",
+	"name": "df_ingestion",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
