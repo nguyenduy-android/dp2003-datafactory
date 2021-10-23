@@ -1,6 +1,12 @@
 {
 	"name": "ls_http_opendata_ecdc_europa_eu",
 	"properties": {
+		"parameters": {
+			"sourceBaseURL": {
+				"type": "string",
+				"defaultValue": "https://raw.githubusercontent.com"
+			}
+		},
 		"annotations": [],
 		"type": "HttpServer",
 		"typeProperties": {
