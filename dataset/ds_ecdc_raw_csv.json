@@ -3,7 +3,10 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_http_opendata_ecdc_europa_eu",
-			"type": "LinkedServiceReference"
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"sourceBaseURL": "https://raw.githubusercontent.com"
+			}
 		},
 		"parameters": {
 			"relativeURL": {
