@@ -74,12 +74,10 @@
 		],
 		"parameters": {
 			"sourceRelativeURL": {
-				"type": "string",
-				"defaultValue": "cloudboxacademy/covid19/main/raw/main/ecdc_data/testing.csv"
+				"type": "string"
 			},
 			"sinkFileName": {
-				"type": "string",
-				"defaultValue": "testing.csv"
+				"type": "string"
 			}
 		},
 		"variables": {
