@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "Avro1",
+						"referenceName": "ds_my_avro_file",
 						"type": "DatasetReference"
 					},
 					"name": "source1"
@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"linkedService": {
-						"referenceName": "AzureSqlDatabase1",
+						"referenceName": "AzureSqlDatabase2",
 						"type": "LinkedServiceReference"
 					},
 					"name": "sink1"
