@@ -78,6 +78,9 @@
 			},
 			"sinkFileName": {
 				"type": "string"
+			},
+			"sourceBaseURL": {
+				"type": "string"
 			}
 		},
 		"variables": {
