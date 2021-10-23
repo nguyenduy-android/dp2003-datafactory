@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "df_ingest",
+						"referenceName": "df_ingestion",
 						"type": "DataFlowReference"
 					},
 					"compute": {
