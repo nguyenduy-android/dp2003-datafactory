@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "ds_ecdc_file_list",
+						"referenceName": "ds_ecdc_file_list_v2",
 						"type": "DatasetReference"
 					},
 					"name": "source1"
@@ -14,7 +14,7 @@
 			],
 			"sinks": [],
 			"transformations": [],
-			"script": "source(output(\n\t\tsourceRelativeURL as string,\n\t\tsinkFileName as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine') ~> source1"
+			"script": "source(output(\n\t\tsourceBaseURL as string,\n\t\tsourceRelativeURL as string,\n\t\tsinkFileName as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine') ~> source1"
 		}
 	}
 }
