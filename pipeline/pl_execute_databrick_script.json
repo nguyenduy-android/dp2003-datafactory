@@ -1,5 +1,5 @@
 {
-	"name": "ExecuteDatabrickScript",
+	"name": "pl_execute_databrick_script",
 	"properties": {
 		"activities": [
 			{

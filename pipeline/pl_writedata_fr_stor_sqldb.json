@@ -1,5 +1,5 @@
 {
-	"name": "writedata_fr_stor_sqldb",
+	"name": "pl_writedata_fr_stor_sqldb",
 	"properties": {
 		"activities": [
 			{
@@ -18,9 +18,6 @@
 					"dataflow": {
 						"referenceName": "df_iot",
 						"type": "DataFlowReference"
-					},
-					"staging": {
-						"folderPath": "ilearndlsgen2fs/ilearniothub2021/01/2021/09/25/16"
 					},
 					"compute": {
 						"coreCount": 8,
