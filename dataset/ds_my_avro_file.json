@@ -1,5 +1,5 @@
 {
-	"name": "Avro1",
+	"name": "ds_my_avro_file",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
