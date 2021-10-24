@@ -1,5 +1,5 @@
 {
-	"name": "df_ingestion",
+	"name": "df_ingest_cases_deaths",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
