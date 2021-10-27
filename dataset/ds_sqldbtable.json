@@ -134,7 +134,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "DimGeography"
+			"table": "ProductCostHistory"
 		}
 	}
 }
