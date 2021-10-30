@@ -5,6 +5,9 @@
 			"referenceName": "ls_ilearndlstorgen2",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "ecdc"
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {

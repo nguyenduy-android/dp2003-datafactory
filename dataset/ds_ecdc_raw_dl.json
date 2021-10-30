@@ -11,6 +11,9 @@
 				"defaultValue": " cases_deaths.csv"
 			}
 		},
+		"folder": {
+			"name": "ecdc"
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
